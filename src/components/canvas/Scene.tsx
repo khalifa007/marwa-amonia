@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Grid } from '@react-three/drei';
+import { OrbitControls, Environment } from '@react-three/drei';
 import { GlassContainer } from './GlassContainer';
 import { LiquidSimulation } from './LiquidSimulation';
 import { LightingRig } from './LightingRig';
