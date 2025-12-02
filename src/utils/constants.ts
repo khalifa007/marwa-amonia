@@ -5,12 +5,16 @@ export const CONTAINER_SEGMENTS = 64;
 
 // Liquid colors by stage
 export const LIQUID_COLORS = {
-  STAGE_0: '#3E2723', // Empty (dark)
-  STAGE_1: '#3E2723', // Raw waste (dark brown)
-  STAGE_2: '#8D6E63', // Decomposition (murky yellow-brown)
-  STAGE_3: '#FBC02D', // Separation (clearer yellow)
-  STAGE_4: '#90CAF9', // Extraction (light blue)
-  STAGE_5: '#B3E5FC', // Complete (very light blue)
+  STAGE_0: '#0F172A', // Empty (dark)
+  STAGE_1: '#3E2723', // Raw wastewater (dark brown)
+  STAGE_2: '#5D4037', // Separation (murky brown after solid removal)
+  STAGE_3: '#8D6E63', // Biological process (lighter brown)
+  STAGE_4: '#A1887F', // Water polishing (tan/beige - cleaner)
+  STAGE_5: '#BCAAA4', // Salinity reduction (light tan)
+  STAGE_6: '#90CAF9', // Electrolysis (light blue - ions separating)
+  STAGE_7: '#64B5F6', // Ammonia synthesis (medium blue)
+  STAGE_8: '#42A5F5', // Water recycling (blue - chlorinated)
+  STAGE_9: '#B3E5FC', // Complete (very light blue - clean water)
 };
 
 // Particle configuration

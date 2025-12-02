@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useSimulationStore } from '../../store/simulationStore';
 import { SENSOR_CONFIGS } from '../../data/sensorConfig';
+import { PROCESS_STAGES } from '../../data/processStages';
 
 const CONTAINER_HEIGHT = 500;
 const CONTAINER_WIDTH = 200;
@@ -161,26 +162,26 @@ export function Container2D() {
           );
         })}
 
-        {/* Bubbles during extraction stage */}
-        {currentStage === 4 &&
-          Array.from({ length: 12 }).map((_, i) => {
+        {/* Bubbles during electrolysis stage */}
+        {currentStage === 6 &&
+          Array.from({ length: 15 }).map((_, i) => {
             const bubbleX = CONTAINER_X + 30 + Math.random() * (CONTAINER_WIDTH - 60);
-            const delay = i * 0.2;
+            const delay = i * 0.15;
 
             return (
               <motion.circle
                 key={i}
                 cx={bubbleX}
                 r={2 + Math.random() * 3}
-                fill="#FFFFFF"
-                opacity="0.6"
-                initial={{ cy: liquidY, opacity: 0.6 }}
+                fill="#FFEB3B"
+                opacity="0.7"
+                initial={{ cy: liquidY, opacity: 0.7 }}
                 animate={{
                   cy: [liquidY, liquidY - 100, liquidY - 200],
-                  opacity: [0.6, 0.4, 0],
+                  opacity: [0.7, 0.5, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 2.5,
                   repeat: Infinity,
                   delay: delay,
                   ease: 'linear',
@@ -193,12 +194,12 @@ export function Container2D() {
         <text
           x="200"
           y="30"
-          fontSize="14"
+          fontSize="12"
           fill="#94A3B8"
           textAnchor="middle"
           className="font-medium"
         >
-          Stage {currentStage + 1}/6: {['Initial', 'Input', 'Sensing', 'AI Process', 'Extraction', 'Complete'][currentStage]}
+          Stage {currentStage + 1}/{PROCESS_STAGES.length}: {PROCESS_STAGES[currentStage]?.name || 'Unknown'}
         </text>
       </svg>
     </div>

@@ -5,6 +5,7 @@ import { useSimulationStore } from './store/simulationStore';
 import { useDataStore } from './store/dataStore';
 import { useSimulation } from './hooks/useSimulation';
 import { Container2D } from './components/2d/Container2D';
+import { PROCESS_STAGES } from './data/processStages';
 
 function App() {
   const {
@@ -51,25 +52,28 @@ function App() {
       {/* Main Content */}
       <div className="flex h-[calc(100vh-80px)]">
         {/* Left Sidebar - Process Stages */}
-        <aside className="w-64 glass border-r border-white/10 p-4">
+        <aside className="w-64 glass border-r border-white/10 p-4 overflow-y-auto">
           <Card title="Process Stages">
-            <div className="space-y-3">
-              {['Initial', 'Input', 'Sensing', 'AI Process', 'Extract', 'Complete'].map((stage, index) => (
+            <div className="space-y-2">
+              {PROCESS_STAGES.map((stage) => (
                 <div
-                  key={index}
-                  className={`p-3 rounded-lg transition-all ${
-                    currentStage === index
+                  key={stage.id}
+                  className={`p-2.5 rounded-lg transition-all ${
+                    currentStage === stage.id
                       ? 'bg-primary/20 border-2 border-primary'
                       : 'bg-white/5 border border-white/10'
                   }`}
                 >
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-3 h-3 rounded-full ${
-                        currentStage === index ? 'bg-primary animate-pulse-glow' : 'bg-gray-600'
+                      className={`w-3 h-3 rounded-full flex-shrink-0 ${
+                        currentStage === stage.id ? 'bg-primary animate-pulse-glow' : 'bg-gray-600'
                       }`}
                     />
-                    <span className="font-medium">{stage}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-sm">{stage.name}</div>
+                      <div className="text-xs text-gray-400 mt-0.5 line-clamp-2">{stage.description}</div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -116,10 +120,13 @@ function App() {
 
           {/* Stage Name Overlay */}
           <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
-            <div className="glass rounded-lg px-6 py-3">
+            <div className="glass rounded-lg px-6 py-3 max-w-md">
               <div className="text-sm text-gray-400">Current Stage</div>
               <div className="text-xl font-bold gradient-text">
-                {['Initial', 'Input', 'Sensing', 'AI Process', 'Extraction', 'Complete'][currentStage]}
+                {PROCESS_STAGES[currentStage]?.name || 'Unknown'}
+              </div>
+              <div className="text-xs text-gray-400 mt-1">
+                {PROCESS_STAGES[currentStage]?.description || ''}
               </div>
             </div>
           </div>
@@ -194,7 +201,7 @@ function App() {
       {/* Footer Timeline */}
       <footer className="glass border-t border-white/10 px-6 py-3">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-400">Stage: {currentStage + 1}/6</span>
+          <span className="text-gray-400">Stage: {currentStage + 1}/{PROCESS_STAGES.length}</span>
           <span className="text-gray-400">Time: {formatTime(elapsedTime)} / 1:00</span>
           <span className="text-gray-400">Speed: 1x</span>
         </div>

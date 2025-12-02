@@ -1,4 +1,4 @@
-export type ProcessStage = 0 | 1 | 2 | 3 | 4 | 5;
+export type ProcessStage = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export interface SimulationParameters {
   voltage: number; // 0-12V

@@ -108,12 +108,16 @@ export function useSimulation() {
   // Update liquid state based on stage
   const updateLiquidStateForStage = (stage: number) => {
     const liquidStates = {
-      0: { fillLevel: 0, color: LIQUID_COLORS.STAGE_0, opacity: 0.8, turbidity: 0.9 },
-      1: { fillLevel: 0.7, color: LIQUID_COLORS.STAGE_1, opacity: 0.9, turbidity: 0.9 },
-      2: { fillLevel: 0.7, color: LIQUID_COLORS.STAGE_2, opacity: 0.85, turbidity: 0.8 },
-      3: { fillLevel: 0.7, color: LIQUID_COLORS.STAGE_3, opacity: 0.8, turbidity: 0.6 },
-      4: { fillLevel: 0.5, color: LIQUID_COLORS.STAGE_4, opacity: 0.7, turbidity: 0.4 },
-      5: { fillLevel: 0.3, color: LIQUID_COLORS.STAGE_5, opacity: 0.6, turbidity: 0.2 },
+      0: { fillLevel: 0, color: LIQUID_COLORS.STAGE_0, opacity: 0.8, turbidity: 0 },
+      1: { fillLevel: 0.75, color: LIQUID_COLORS.STAGE_1, opacity: 0.95, turbidity: 0.95 },
+      2: { fillLevel: 0.75, color: LIQUID_COLORS.STAGE_2, opacity: 0.9, turbidity: 0.85 },
+      3: { fillLevel: 0.75, color: LIQUID_COLORS.STAGE_3, opacity: 0.88, turbidity: 0.75 },
+      4: { fillLevel: 0.7, color: LIQUID_COLORS.STAGE_4, opacity: 0.85, turbidity: 0.6 },
+      5: { fillLevel: 0.7, color: LIQUID_COLORS.STAGE_5, opacity: 0.8, turbidity: 0.5 },
+      6: { fillLevel: 0.65, color: LIQUID_COLORS.STAGE_6, opacity: 0.75, turbidity: 0.4 },
+      7: { fillLevel: 0.6, color: LIQUID_COLORS.STAGE_7, opacity: 0.7, turbidity: 0.3 },
+      8: { fillLevel: 0.55, color: LIQUID_COLORS.STAGE_8, opacity: 0.65, turbidity: 0.2 },
+      9: { fillLevel: 0.5, color: LIQUID_COLORS.STAGE_9, opacity: 0.6, turbidity: 0.1 },
     };
 
     const liquidState = liquidStates[stage as keyof typeof liquidStates];
