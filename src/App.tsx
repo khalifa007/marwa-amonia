@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './components/shared/Button';
 import { Card } from './components/shared/Card';
+import { Modal } from './components/shared/Modal';
+import { ProcessInfo } from './components/shared/ProcessInfo';
 import { useSimulationStore } from './store/simulationStore';
 import { useDataStore } from './store/dataStore';
 import { useSimulation } from './hooks/useSimulation';
 import { Container2D } from './components/2d/Container2D';
 
 function App() {
+  const [isProcessInfoOpen, setIsProcessInfoOpen] = useState(false);
+
   const {
     isPlaying,
     currentStage,
@@ -39,6 +43,9 @@ function App() {
           <p className="text-sm text-gray-400">Ammonia Extraction Simulation</p>
         </div>
         <div className="flex gap-3">
+          <Button variant="accent" size="sm" onClick={() => setIsProcessInfoOpen(true)}>
+            ℹ️ Process Info
+          </Button>
           <Button variant="primary" size="sm" onClick={() => alert('Screenshot feature coming soon!')}>
             📸 Screenshot
           </Button>
@@ -199,6 +206,15 @@ function App() {
           <span className="text-gray-400">Speed: 1x</span>
         </div>
       </footer>
+
+      {/* Process Information Modal */}
+      <Modal
+        isOpen={isProcessInfoOpen}
+        onClose={() => setIsProcessInfoOpen(false)}
+        title="Treatment Process"
+      >
+        <ProcessInfo />
+      </Modal>
     </div>
   );
 }
